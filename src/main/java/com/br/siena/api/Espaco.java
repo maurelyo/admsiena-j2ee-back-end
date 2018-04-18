@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableAutoConfiguration
 public class Espaco {
-    @RequestMapping("/espaco")
+    @RequestMapping(value = "/espaco", produces = "application/json")
     EspacoEntity listarEspaco () {
 
         EspacoDTO espaco = new EspacoDTO();
