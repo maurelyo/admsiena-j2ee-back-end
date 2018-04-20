@@ -4,17 +4,30 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/siena</property>
-        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/siena</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- JDBC connection pool (use the build-in) -->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
+
+        <!-- thread is the short name for org.hibernate.context.ThreadLocalSessionContext -->
+        <!--<property name="hibernate.current_session_context_class">thread</property>-->
+
+        <!-- Set "true" to show SQL statements -->
+        <property name="hibernate.show_sql">true</property>
+
         <mapping class="com.br.siena.domain.EspacoEntity"/>
         <mapping class="com.br.siena.domain.PerfilEntity"/>
         <mapping class="com.br.siena.domain.ReservaEntity"/>
         <mapping class="com.br.siena.domain.UnidadeEntity"/>
         <mapping class="com.br.siena.domain.UsuarioEntity"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
 
         <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
 </hibernate-configuration>
