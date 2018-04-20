@@ -1,5 +1,7 @@
 package com.br.siena.api;
 
+import com.br.siena.domain.EspacoEntity;
+import com.br.siena.model.EspacoDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
@@ -21,10 +23,11 @@ public class Espaco {
     }
 
     @GetMapping("/{id}")
-    public Integer fetch(
+    public EspacoEntity fetch(
             @PathVariable int id
     ) {
-        return id;
+        EspacoDTO espacoDTO = new EspacoDTO();
+        return espacoDTO.find(id);
     }
 
     @PostMapping
