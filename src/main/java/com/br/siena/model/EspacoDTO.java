@@ -2,36 +2,21 @@ package com.br.siena.model;
 
 import com.br.siena.SienaApplication;
 import com.br.siena.domain.EspacoEntity;
-import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 
 public class EspacoDTO implements EspacoDTOInterface {
     private static EspacoEntity espacoEntity;
-    protected EntityManager entityManager;
 
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
-
-    public static EspacoEntity getEspacoEntity() {
-        return espacoEntity;
-    }
-
-    public static void setEspacoEntity(EspacoEntity espacoEntity) {
-        EspacoDTO.espacoEntity = espacoEntity;
-    }
-
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public EspacoEntity getPorId(final int id) {
-        return entityManager.find(EspacoEntity.class, id);
+    public EspacoDTO() {
+        this.setEntityManagerFactory(SienaApplication.getSession().getEntityManagerFactory());
+        this.setEntityManager(this.getEntityManagerFactory().createEntityManager());
     }
 
     @Override
@@ -41,10 +26,30 @@ public class EspacoDTO implements EspacoDTOInterface {
 
     @Override
     public EspacoEntity find(int idEspaco) {
-        Session session = SienaApplication.getSession();
-        session.beginTransaction();
-        EspacoEntity espaco = session.get(EspacoEntity.class, idEspaco);
+        return this.getEntityManager().find(EspacoEntity.class, idEspaco);
+    }
 
-        return espaco;
+    public static EspacoEntity getEspacoEntity() {
+        return espacoEntity;
+    }
+
+    public static void setEspacoEntity(EspacoEntity espacoEntity) {
+        EspacoDTO.espacoEntity = espacoEntity;
+    }
+
+    private EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    private void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    private EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
+
+    private void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
     }
 }

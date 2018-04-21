@@ -1,7 +1,6 @@
 package com.br.siena.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +9,7 @@ public class EspacoEntity {
     private Integer idEspaco;
     private String noEspaco;
     private Boolean inAtivo;
-    private Serializable nuValorAluguel;
+    private String nuValorAluguel;
 
     @Id
     @Column(name = "id_espaco")
@@ -44,11 +43,11 @@ public class EspacoEntity {
 
     @Basic
     @Column(name = "nu_valor_aluguel")
-    public Serializable getNuValorAluguel() {
+    public String getNuValorAluguel() {
         return nuValorAluguel;
     }
 
-    public void setNuValorAluguel(Serializable nuValorAluguel) {
+    public void setNuValorAluguel(String nuValorAluguel) {
         this.nuValorAluguel = nuValorAluguel;
     }
 
