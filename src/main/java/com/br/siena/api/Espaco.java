@@ -15,9 +15,6 @@ import java.util.Collection;
 @RequestMapping(value = "espaco", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Espaco {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         SpringApplication.run(Espaco.class, args);
     }

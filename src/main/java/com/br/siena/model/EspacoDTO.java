@@ -1,6 +1,8 @@
 package com.br.siena.model;
 
+import com.br.siena.SienaApplication;
 import com.br.siena.domain.EspacoEntity;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 public class EspacoDTO implements EspacoDTOInterface {
     private static EspacoEntity espacoEntity;
     protected EntityManager entityManager;
+
+
 
     public static EspacoEntity getEspacoEntity() {
         return espacoEntity;
@@ -37,9 +41,10 @@ public class EspacoDTO implements EspacoDTOInterface {
 
     @Override
     public EspacoEntity find(int idEspaco) {
-        EspacoEntity espaco = new EspacoEntity();
-        espaco.setNoEspaco("Teste");
-        espaco.setIdEspaco(idEspaco);
+        Session session = SienaApplication.getSession();
+        session.beginTransaction();
+        EspacoEntity espaco = session.get(EspacoEntity.class, idEspaco);
+
         return espaco;
     }
 }
