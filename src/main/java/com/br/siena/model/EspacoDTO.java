@@ -5,11 +5,9 @@ import com.br.siena.domain.EspacoEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
 
 
-public class EspacoDTO implements EspacoDTOInterface {
-    private static EspacoEntity espacoEntity;
+public class EspacoDTO {
 
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
@@ -19,22 +17,8 @@ public class EspacoDTO implements EspacoDTOInterface {
         this.setEntityManager(this.getEntityManagerFactory().createEntityManager());
     }
 
-    @Override
-    public List<EspacoEntity> findAll() {
-        return null;
-    }
-
-    @Override
     public EspacoEntity find(int idEspaco) {
         return this.getEntityManager().find(EspacoEntity.class, idEspaco);
-    }
-
-    public static EspacoEntity getEspacoEntity() {
-        return espacoEntity;
-    }
-
-    public static void setEspacoEntity(EspacoEntity espacoEntity) {
-        EspacoDTO.espacoEntity = espacoEntity;
     }
 
     private EntityManager getEntityManager() {

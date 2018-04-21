@@ -2,13 +2,13 @@ package com.br.siena.api;
 
 import com.br.siena.domain.EspacoEntity;
 import com.br.siena.model.EspacoDTO;
+import com.br.siena.repository.EspacoRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @EnableAutoConfiguration
@@ -36,13 +36,9 @@ public class Espaco {
     }
 
     @GetMapping
-    public Collection<String> fetchAll(
-    ) {
-        String a = "321332132131231";
-        String b = "lista23rEspaco";
-        Collection<String> lista = new ArrayList<>();
-        lista.add(a);
-        lista.add(b);
-        return lista;
+    public List<EspacoEntity> fetchAll() {
+        EspacoRepository repository = new EspacoRepository();
+        repository.listarAtivos();
+        return repository.listarAtivos();
     }
 }
