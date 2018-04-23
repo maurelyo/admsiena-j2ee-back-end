@@ -1,6 +1,7 @@
 package com.br.siena.domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -16,6 +17,7 @@ public class UsuarioEntity {
     private String noSenha;
     private Integer idPerfil;
     private Integer idUnidade;
+    private Date dtNascimento;
 
     @Id
     @Column(name = "id_usuario")
@@ -99,7 +101,6 @@ public class UsuarioEntity {
         this.nuCpf = nuCpf;
     }
 
-
     @Basic
     @Column(name = "no_senha")
     public String getNoSenha() {
@@ -108,6 +109,16 @@ public class UsuarioEntity {
 
     public void setNoSenha(String noSenha) {
         this.noSenha = noSenha;
+    }
+
+    @Basic
+    @Column(name = "dt_nascimento")
+    public Date getDtNascimento() {
+        return dtNascimento;
+    }
+
+    public void setDtNascimento(Date dtNascimento) {
+        this.dtNascimento = dtNascimento;
     }
 
     @Override
@@ -123,12 +134,24 @@ public class UsuarioEntity {
                 Objects.equals(idPerfil, that.idPerfil) &&
                 Objects.equals(idUnidade, that.idUnidade) &&
                 Objects.equals(nuCpf, that.nuCpf) &&
-                Objects.equals(noSenha, that.noSenha);
+                Objects.equals(noSenha, that.noSenha) &&
+                Objects.equals(dtNascimento, that.dtNascimento);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idUsuario, noLogin, noPessoa, dtAlteracao, inAtivo, idPerfil, idUnidade, nuCpf, noSenha);
+        return Objects.hash(
+                idUsuario,
+                noLogin,
+                noPessoa,
+                dtAlteracao,
+                inAtivo,
+                idPerfil,
+                idUnidade,
+                nuCpf,
+                noSenha,
+                dtNascimento
+        );
     }
 }

@@ -5,6 +5,7 @@ import com.br.siena.model.UsuarioDTO;
 import com.br.siena.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -26,9 +27,10 @@ public class UsuarioService {
                                           int idPerfil,
                                           int idUnidade,
                                           String nuCpf,
-                                          String noSenhaBase64
+                                          String noSenhaBase64,
+                                          Date dtNascimento
     ) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        return usuarioDTO.save(noLogin, noPessoa, idPerfil, idUnidade, nuCpf, noSenhaBase64);
+        return usuarioDTO.save(noLogin, noPessoa, idPerfil, idUnidade, nuCpf, noSenhaBase64, dtNascimento);
     }
 }

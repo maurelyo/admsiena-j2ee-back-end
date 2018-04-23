@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -55,11 +56,12 @@ public class Usuario {
             @RequestParam("idPerfil") int idPerfil,
             @RequestParam("idUnidade") int idUnidade,
             @RequestParam("nuCpf") String nuCpf,
-            @RequestParam("noSenha") String noSenhaBase64
+            @RequestParam("noSenha") String noSenhaBase64,
+            @RequestParam("dtNascimento") Date dtNascimento
     ) {
         UsuarioEntity usuario = null;
         try {
-            usuario = service.cadastrarUsuario(noLogin, noPessoa, idPerfil, idUnidade, nuCpf, noSenhaBase64);
+            usuario = service.cadastrarUsuario(noLogin, noPessoa, idPerfil, idUnidade, nuCpf, noSenhaBase64, dtNascimento);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

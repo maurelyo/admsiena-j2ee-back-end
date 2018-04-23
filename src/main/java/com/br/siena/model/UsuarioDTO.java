@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.sql.Date;
 import java.util.Base64;
 
 
@@ -32,7 +33,9 @@ public class UsuarioDTO {
                               int idPerfil,
                               int idUnidade,
                               String nuCpf,
-                              String noSenhaBase64) {
+                              String noSenhaBase64,
+                              Date dtNascimento
+    ) {
 
         Session session = SienaApplication.getSession();
         Transaction transaction = session.beginTransaction();
@@ -50,6 +53,7 @@ public class UsuarioDTO {
         usuarioEntity.setIdUnidade(idUnidade);
         usuarioEntity.setNuCpf(nuCpf);
         usuarioEntity.setNoSenha(passwordEncoder.encode(noSenha));
+        usuarioEntity.setDtNascimento(dtNascimento);
         session.saveOrUpdate(usuarioEntity);
         transaction.commit();
         session.close();
