@@ -13,9 +13,16 @@ public class UsuarioEntity {
     private Timestamp dtAlteracao;
     private Boolean inAtivo;
     private String nuCpf;
+    private String noSenha;
+    private Integer idPerfil;
+    private Integer idUnidade;
 
     @Id
     @Column(name = "id_usuario")
+    @SequenceGenerator(name = "tb_usuario_id_usuario_seq",
+            sequenceName = "admin.tb_usuario_id_usuario_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_usuario_id_usuario_seq")
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -63,6 +70,24 @@ public class UsuarioEntity {
     public void setInAtivo(Boolean inAtivo) {
         this.inAtivo = inAtivo;
     }
+    @Basic
+    @Column(name = "id_perfil")
+    public Integer getIdPerfil() {
+        return idPerfil;
+    }
+
+    public void setIdPerfil(Integer idPerfil) {
+        this.idPerfil = idPerfil;
+    }
+    @Basic
+    @Column(name = "id_unidade")
+    public Integer getIdUnidade() {
+        return idUnidade;
+    }
+
+    public void setIdUnidade(Integer idUnidade) {
+        this.idUnidade = idUnidade;
+    }
 
     @Basic
     @Column(name = "nu_cpf")
@@ -72,6 +97,17 @@ public class UsuarioEntity {
 
     public void setNuCpf(String nuCpf) {
         this.nuCpf = nuCpf;
+    }
+
+
+    @Basic
+    @Column(name = "no_senha")
+    public String getNoSenha() {
+        return noSenha;
+    }
+
+    public void setNoSenha(String noSenha) {
+        this.noSenha = noSenha;
     }
 
     @Override
@@ -84,12 +120,15 @@ public class UsuarioEntity {
                 Objects.equals(noPessoa, that.noPessoa) &&
                 Objects.equals(dtAlteracao, that.dtAlteracao) &&
                 Objects.equals(inAtivo, that.inAtivo) &&
-                Objects.equals(nuCpf, that.nuCpf);
+                Objects.equals(idPerfil, that.idPerfil) &&
+                Objects.equals(idUnidade, that.idUnidade) &&
+                Objects.equals(nuCpf, that.nuCpf) &&
+                Objects.equals(noSenha, that.noSenha);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idUsuario, noLogin, noPessoa, dtAlteracao, inAtivo, nuCpf);
+        return Objects.hash(idUsuario, noLogin, noPessoa, dtAlteracao, inAtivo, idPerfil, idUnidade, nuCpf, noSenha);
     }
 }

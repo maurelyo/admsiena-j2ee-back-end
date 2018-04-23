@@ -19,7 +19,5 @@
         <mapping class="com.br.siena.domain.ReservaEntity"/>
         <mapping class="com.br.siena.domain.UnidadeEntity"/>
         <mapping class="com.br.siena.domain.UsuarioEntity"/>
-
-        <!-- DB schema will be updated if needed -->
     </session-factory>
 </hibernate-configuration>

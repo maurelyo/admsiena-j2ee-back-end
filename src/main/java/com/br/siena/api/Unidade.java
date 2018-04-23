@@ -5,7 +5,10 @@ import com.br.siena.service.UnidadeService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -46,14 +49,5 @@ public class Unidade {
             System.out.println(ex.getMessage());
         }
         return list;
-    }
-
-    @PostMapping
-    public void cadastrar(
-            @RequestParam("sgBloco") String sgBloco,
-            @RequestParam("nuApartamento") int nuApartamento,
-            @RequestParam("nuTamanho") float nuTamanho
-            ) {
-        // cadastra unidade
     }
 }
