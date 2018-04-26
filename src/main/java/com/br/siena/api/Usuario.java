@@ -52,16 +52,14 @@ public class Usuario {
     @PostMapping
     public UsuarioEntity cadastrar(
             @RequestParam("noLogin") String noLogin,
-            @RequestParam("noPessoa") String noPessoa,
             @RequestParam("idPerfil") int idPerfil,
-            @RequestParam("idUnidade") int idUnidade,
-            @RequestParam("nuCpf") String nuCpf,
             @RequestParam("noSenha") String noSenhaBase64,
-            @RequestParam("dtNascimento") Date dtNascimento
+            @RequestParam("noEmail") String noEmail,
+            @RequestParam("idPessoa") int idPessoa
     ) {
         UsuarioEntity usuario = null;
         try {
-            usuario = service.cadastrarUsuario(noLogin, noPessoa, idPerfil, idUnidade, nuCpf, noSenhaBase64, dtNascimento);
+            usuario = service.cadastrarUsuario(noLogin, idPerfil, noSenhaBase64, noEmail, idPessoa);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

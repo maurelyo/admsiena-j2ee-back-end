@@ -1,17 +1,15 @@
 package com.br.siena.model;
 
 import com.br.siena.SienaApplication;
+import com.br.siena.domain.PerfilEntity;
+import com.br.siena.domain.PessoaEntity;
 import com.br.siena.domain.UsuarioEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.postgresql.util.PGTimestamp;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.sql.Date;
-import java.util.Base64;
 
 
 public class UsuarioDTO {
@@ -29,31 +27,27 @@ public class UsuarioDTO {
     }
 
     public UsuarioEntity save(String noLogin,
-                              String noPessoa,
-                              int idPerfil,
-                              int idUnidade,
-                              String nuCpf,
-                              String noSenhaBase64,
-                              Date dtNascimento
+                              PerfilEntity perfil,
+                              String noSenha,
+                              String noEmail,
+                              PessoaEntity pessoa
     ) {
 
         Session session = SienaApplication.getSession();
         Transaction transaction = session.beginTransaction();
 
-        byte[] noSenhaBytes = Base64.getDecoder().decode(noSenhaBase64);
-        String noSenha = new String(noSenhaBytes);
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
         UsuarioEntity usuarioEntity = new UsuarioEntity();
         usuarioEntity.setNoLogin(noLogin);
-        usuarioEntity.setNoPessoa(noPessoa);
         usuarioEntity.setDtAlteracao(new PGTimestamp(System.currentTimeMillis()));
         usuarioEntity.setInAtivo(true);
-        usuarioEntity.setIdPerfil(idPerfil);
-        usuarioEntity.setIdUnidade(idUnidade);
-        usuarioEntity.setNuCpf(nuCpf);
-        usuarioEntity.setNoSenha(passwordEncoder.encode(noSenha));
-        usuarioEntity.setDtNascimento(dtNascimento);
+        usuarioEntity.setNoSenha(noSenha);
+        usuarioEntity.setPerfil(perfil);
+        usuarioEntity.setNoEmail(noEmail);
+        usuarioEntity.setPessoa(pessoa);
+
+
         session.saveOrUpdate(usuarioEntity);
         transaction.commit();
         session.close();

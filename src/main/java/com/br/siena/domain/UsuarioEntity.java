@@ -11,11 +11,17 @@ public class UsuarioEntity {
     private String noLogin;
     private Timestamp dtAlteracao;
     private boolean inAtivo;
+    private PerfilEntity perfil;
     private String noSenha;
     private String noEmail;
+    private PessoaEntity pessoa;
 
     @Id
     @Column(name = "id_usuario")
+    @SequenceGenerator(name = "tb_usuario_id_usuario_seq",
+            sequenceName = "admin.tb_usuario_id_usuario_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_usuario_id_usuario_seq")
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -54,6 +60,16 @@ public class UsuarioEntity {
         this.inAtivo = inAtivo;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_perfil")
+    public PerfilEntity getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilEntity perfil) {
+        this.perfil = perfil;
+    }
+
     @Basic
     @Column(name = "no_senha")
     public String getNoSenha() {
@@ -74,22 +90,34 @@ public class UsuarioEntity {
         this.noEmail = noEmail;
     }
 
+    @OneToOne
+    @JoinColumn(name = "id_pessoa")
+    public PessoaEntity getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(PessoaEntity pessoa) {
+        this.pessoa = pessoa;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof UsuarioEntity)) return false;
         UsuarioEntity that = (UsuarioEntity) o;
-        return idUsuario == that.idUsuario &&
-                inAtivo == that.inAtivo &&
-                Objects.equals(noLogin, that.noLogin) &&
-                Objects.equals(dtAlteracao, that.dtAlteracao) &&
-                Objects.equals(noSenha, that.noSenha) &&
-                Objects.equals(noEmail, that.noEmail);
+        return getIdUsuario() == that.getIdUsuario() &&
+                isInAtivo() == that.isInAtivo() &&
+                Objects.equals(getNoLogin(), that.getNoLogin()) &&
+                Objects.equals(getDtAlteracao(), that.getDtAlteracao()) &&
+                Objects.equals(getPerfil(), that.getPerfil()) &&
+                Objects.equals(getNoSenha(), that.getNoSenha()) &&
+                Objects.equals(getNoEmail(), that.getNoEmail()) &&
+                Objects.equals(getPessoa(), that.getPessoa());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idUsuario, noLogin, dtAlteracao, inAtivo, noSenha, noEmail);
+        return Objects.hash(getIdUsuario(), getNoLogin(), getDtAlteracao(), isInAtivo(), getPerfil(), getNoSenha(), getNoEmail(), getPessoa());
     }
 }

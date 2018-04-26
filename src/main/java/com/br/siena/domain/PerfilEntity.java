@@ -12,6 +12,10 @@ public class PerfilEntity {
 
     @Id
     @Column(name = "id_perfil")
+    @SequenceGenerator(name = "tb_perfil_id_perfil_seq",
+            sequenceName = "admin.tb_perfil_id_perfil_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_perfil_id_perfil_seq")
     public int getIdPerfil() {
         return idPerfil;
     }

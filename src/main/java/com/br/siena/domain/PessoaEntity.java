@@ -18,6 +18,10 @@ public class PessoaEntity {
 
     @Id
     @Column(name = "id_pessoa")
+    @SequenceGenerator(name = "tb_pessoa_id_pessoa_seq",
+            sequenceName = "admin.tb_pessoa_id_pessoa_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_pessoa_id_pessoa_seq")
     public int getIdPessoa() {
         return idPessoa;
     }

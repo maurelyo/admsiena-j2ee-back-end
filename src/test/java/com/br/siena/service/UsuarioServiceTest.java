@@ -1,35 +1,42 @@
 package com.br.siena.service;
 
+import com.br.siena.domain.PerfilEntity;
+import com.br.siena.domain.PessoaEntity;
 import com.br.siena.domain.UsuarioEntity;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-public class UsuarioServiceTest {
+public class UsuarioServiceTest extends AbstractServiceTest {
 
-    private UsuarioService service;
-
-    @Before
-    public void setUp() throws Exception {
-
-        this.service = new UsuarioService();
-    }
-
-    @Test
-    public void recuperar() {
-    }
 
     @Test
     public void listar() {
         List<UsuarioEntity> list = null;
-        list = service.listar();
+        list = this.getUsuarioService().listar();
         assertNotNull(list);
     }
 
     @Test
     public void cadastrarUsuario() {
+        List<PerfilEntity> perfilEntityList = this.listarPerfil();
+        PerfilEntity perfilEntity = perfilEntityList.get(1);
+
+        List<PessoaEntity> pessoaEntityList = this.listarPessoa();
+        PessoaEntity pessoaEntity = pessoaEntityList.get(1);
+
+        UsuarioEntity usuarioEntity = this.getUsuarioService().cadastrarUsuario(
+                getNoLoginTest(),
+                perfilEntity.getIdPerfil(),
+                getSenhaBase64Test(),
+                getNoEmailTest(),
+                pessoaEntity.getIdPessoa()
+        );
+
+        assertEquals(pessoaEntity, usuarioEntity.getPessoa());
+        assertEquals(perfilEntity, usuarioEntity.getPerfil());
     }
 }

@@ -16,6 +16,10 @@ public class ReservaEntity {
 
     @Id
     @Column(name = "id_reserva")
+    @SequenceGenerator(name = "tb_reserva_id_reserva_seq",
+            sequenceName = "admin.tb_reserva_id_reserva_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_reserva_id_reserva_seq")
     public int getIdReserva() {
         return idReserva;
     }

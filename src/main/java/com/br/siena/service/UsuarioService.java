@@ -1,11 +1,15 @@
 package com.br.siena.service;
 
+import com.br.siena.domain.PerfilEntity;
+import com.br.siena.domain.PessoaEntity;
 import com.br.siena.domain.UsuarioEntity;
 import com.br.siena.model.UsuarioDTO;
 import com.br.siena.repository.UsuarioRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -23,14 +27,36 @@ public class UsuarioService {
     }
 
     public UsuarioEntity cadastrarUsuario(String noLogin,
-                                          String noPessoa,
                                           int idPerfil,
-                                          int idUnidade,
-                                          String nuCpf,
                                           String noSenhaBase64,
-                                          Date dtNascimento
+                                          String noEmail,
+                                          int idPessoa
     ) {
+        String noSenha = this.converterBase64ParaHash(noSenhaBase64);
+
+        // Recupera a entidade Perfil por id
+        PerfilService perfilService = new PerfilService();
+        PerfilEntity perfil = perfilService.recuperar(idPerfil);
+        System.out.println(perfil);
+
+        // Recupera a entidade Pessoa por id
+        PessoaService pessoaService = new PessoaService();
+        PessoaEntity pessoa = pessoaService.recuperar(idPessoa);
+        System.out.println(pessoa);
+
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        return usuarioDTO.save(noLogin, noPessoa, idPerfil, idUnidade, nuCpf, noSenhaBase64, dtNascimento);
+        return usuarioDTO.save(noLogin, perfil, noSenha, noEmail, pessoa);
+    }
+
+    /**
+     * Converte uma string em base64 para PasswordEncoder
+     * @param noSenhaBase64 String em base64
+     * @return noSenha
+     */
+    private String converterBase64ParaHash(String noSenhaBase64) {
+        byte[] noSenhaBytes = Base64.getDecoder().decode(noSenhaBase64);
+        String noSenha = new String(noSenhaBytes);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(noSenha);
     }
 }

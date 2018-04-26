@@ -12,6 +12,10 @@ public class TipoPessoaEntity {
 
     @Id
     @Column(name = "id_tipo_pessoa")
+    @SequenceGenerator(name = "tb_tipo_pessoa_id_tipo_pessoa_seq",
+            sequenceName = "admin.tb_tipo_pessoa_id_tipo_pessoa_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_tipo_pessoa_id_tipo_pessoa_seq")
     public int getIdTipoPessoa() {
         return idTipoPessoa;
     }

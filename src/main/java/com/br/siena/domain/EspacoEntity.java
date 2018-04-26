@@ -13,6 +13,10 @@ public class EspacoEntity {
 
     @Id
     @Column(name = "id_espaco")
+    @SequenceGenerator(name = "tb_espaco_id_espaco_seq",
+            sequenceName = "admin.tb_espaco_id_espaco_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_espaco_id_espaco_seq")
     public int getIdEspaco() {
         return idEspaco;
     }

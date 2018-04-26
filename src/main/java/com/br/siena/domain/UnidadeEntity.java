@@ -17,6 +17,10 @@ public class UnidadeEntity {
 
     @Id
     @Column(name = "id_unidade")
+    @SequenceGenerator(name = "tb_unidade_id_unidade_seq",
+            sequenceName = "admin.tb_unidade_id_unidade_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_unidade_id_unidade_seq")
     public int getIdUnidade() {
         return idUnidade;
     }
