@@ -3,6 +3,8 @@ package com.br.siena.service;
 import com.br.siena.domain.PerfilEntity;
 import com.br.siena.domain.PessoaEntity;
 import com.br.siena.domain.UsuarioEntity;
+import com.br.siena.exception.PessoaException;
+import com.br.siena.exception.UsuarioException;
 import org.junit.Test;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class UsuarioServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void cadastrarUsuario() {
+    public void cadastrarUsuario() throws PessoaException, UsuarioException {
         List<PerfilEntity> perfilEntityList = this.listarPerfil();
         PerfilEntity perfilEntity = perfilEntityList.get(1);
 

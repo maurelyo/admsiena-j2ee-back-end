@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
+import javax.ws.rs.WebApplicationException;
 import java.util.List;
 
 @RestController
@@ -50,6 +50,7 @@ public class Usuario {
     }
 
     @PostMapping
+    @ResponseBody
     public UsuarioEntity cadastrar(
             @RequestParam("noLogin") String noLogin,
             @RequestParam("idPerfil") int idPerfil,
@@ -57,11 +58,11 @@ public class Usuario {
             @RequestParam("noEmail") String noEmail,
             @RequestParam("idPessoa") int idPessoa
     ) {
-        UsuarioEntity usuario = null;
+        UsuarioEntity usuario;
         try {
             usuario = service.cadastrarUsuario(noLogin, idPerfil, noSenhaBase64, noEmail, idPessoa);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            throw new WebApplicationException(ex.getMessage());
         }
         return usuario;
     }
