@@ -6,17 +6,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_perfil", schema = "admin", catalog = "siena")
 public class PerfilEntity {
-    private Integer idPerfil;
+    private int idPerfil;
     private String noPerfil;
-    private Boolean inAtivo;
+    private boolean inAtivo;
 
     @Id
     @Column(name = "id_perfil")
-    public Integer getIdPerfil() {
+    public int getIdPerfil() {
         return idPerfil;
     }
 
-    public void setIdPerfil(Integer idPerfil) {
+    public void setIdPerfil(int idPerfil) {
         this.idPerfil = idPerfil;
     }
 
@@ -32,11 +32,11 @@ public class PerfilEntity {
 
     @Basic
     @Column(name = "in_ativo")
-    public Boolean getInAtivo() {
+    public boolean isInAtivo() {
         return inAtivo;
     }
 
-    public void setInAtivo(Boolean inAtivo) {
+    public void setInAtivo(boolean inAtivo) {
         this.inAtivo = inAtivo;
     }
 
@@ -45,9 +45,9 @@ public class PerfilEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PerfilEntity that = (PerfilEntity) o;
-        return Objects.equals(idPerfil, that.idPerfil) &&
-                Objects.equals(noPerfil, that.noPerfil) &&
-                Objects.equals(inAtivo, that.inAtivo);
+        return idPerfil == that.idPerfil &&
+                inAtivo == that.inAtivo &&
+                Objects.equals(noPerfil, that.noPerfil);
     }
 
     @Override

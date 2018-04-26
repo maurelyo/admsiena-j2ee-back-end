@@ -6,8 +6,6 @@
     <session-factory name="java:hibernate/SessionFactory">
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/siena</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">postgres</property>
         <property name="hibernate.connection.pool_size">1</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
@@ -16,7 +14,9 @@
 
         <mapping class="com.br.siena.domain.EspacoEntity"/>
         <mapping class="com.br.siena.domain.PerfilEntity"/>
+        <mapping class="com.br.siena.domain.PessoaEntity"/>
         <mapping class="com.br.siena.domain.ReservaEntity"/>
+        <mapping class="com.br.siena.domain.TipoPessoaEntity"/>
         <mapping class="com.br.siena.domain.UnidadeEntity"/>
         <mapping class="com.br.siena.domain.UsuarioEntity"/>
     </session-factory>

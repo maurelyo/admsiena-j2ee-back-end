@@ -8,19 +8,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_reserva", schema = "admin", catalog = "siena")
 public class ReservaEntity {
-    private Integer idReserva;
+    private int idReserva;
     private Timestamp dtAlteracao;
-    private Boolean inPago;
-    private Boolean inAtivo;
+    private boolean inPago;
+    private boolean inAtivo;
     private Date dtReserva;
 
     @Id
     @Column(name = "id_reserva")
-    public Integer getIdReserva() {
+    public int getIdReserva() {
         return idReserva;
     }
 
-    public void setIdReserva(Integer idReserva) {
+    public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
     }
 
@@ -36,21 +36,21 @@ public class ReservaEntity {
 
     @Basic
     @Column(name = "in_pago")
-    public Boolean getInPago() {
+    public boolean isInPago() {
         return inPago;
     }
 
-    public void setInPago(Boolean inPago) {
+    public void setInPago(boolean inPago) {
         this.inPago = inPago;
     }
 
     @Basic
     @Column(name = "in_ativo")
-    public Boolean getInAtivo() {
+    public boolean isInAtivo() {
         return inAtivo;
     }
 
-    public void setInAtivo(Boolean inAtivo) {
+    public void setInAtivo(boolean inAtivo) {
         this.inAtivo = inAtivo;
     }
 
@@ -69,10 +69,10 @@ public class ReservaEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReservaEntity that = (ReservaEntity) o;
-        return Objects.equals(idReserva, that.idReserva) &&
+        return idReserva == that.idReserva &&
+                inPago == that.inPago &&
+                inAtivo == that.inAtivo &&
                 Objects.equals(dtAlteracao, that.dtAlteracao) &&
-                Objects.equals(inPago, that.inPago) &&
-                Objects.equals(inAtivo, that.inAtivo) &&
                 Objects.equals(dtReserva, that.dtReserva);
     }
 

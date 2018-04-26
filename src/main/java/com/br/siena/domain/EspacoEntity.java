@@ -6,18 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_espaco", schema = "admin", catalog = "siena")
 public class EspacoEntity {
-    private Integer idEspaco;
+    private int idEspaco;
     private String noEspaco;
-    private Boolean inAtivo;
+    private boolean inAtivo;
     private String nuValorAluguel;
 
     @Id
     @Column(name = "id_espaco")
-    public Integer getIdEspaco() {
+    public int getIdEspaco() {
         return idEspaco;
     }
 
-    public void setIdEspaco(Integer idEspaco) {
+    public void setIdEspaco(int idEspaco) {
         this.idEspaco = idEspaco;
     }
 
@@ -33,11 +33,11 @@ public class EspacoEntity {
 
     @Basic
     @Column(name = "in_ativo")
-    public Boolean getInAtivo() {
+    public boolean isInAtivo() {
         return inAtivo;
     }
 
-    public void setInAtivo(Boolean inAtivo) {
+    public void setInAtivo(boolean inAtivo) {
         this.inAtivo = inAtivo;
     }
 
@@ -56,9 +56,9 @@ public class EspacoEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EspacoEntity that = (EspacoEntity) o;
-        return Objects.equals(idEspaco, that.idEspaco) &&
+        return idEspaco == that.idEspaco &&
+                inAtivo == that.inAtivo &&
                 Objects.equals(noEspaco, that.noEspaco) &&
-                Objects.equals(inAtivo, that.inAtivo) &&
                 Objects.equals(nuValorAluguel, that.nuValorAluguel);
     }
 

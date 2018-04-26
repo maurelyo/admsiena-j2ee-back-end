@@ -8,20 +8,20 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_unidade", schema = "admin", catalog = "siena")
 public class UnidadeEntity {
-    private Integer idUnidade;
+    private int idUnidade;
     private String sgBloco;
-    private Integer nuApartamento;
-    private Boolean inAtivo;
+    private int nuApartamento;
+    private boolean inAtivo;
     private Timestamp dtAlteracao;
     private BigDecimal nuTamanho;
 
     @Id
     @Column(name = "id_unidade")
-    public Integer getIdUnidade() {
+    public int getIdUnidade() {
         return idUnidade;
     }
 
-    public void setIdUnidade(Integer idUnidade) {
+    public void setIdUnidade(int idUnidade) {
         this.idUnidade = idUnidade;
     }
 
@@ -37,21 +37,21 @@ public class UnidadeEntity {
 
     @Basic
     @Column(name = "nu_apartamento")
-    public Integer getNuApartamento() {
+    public int getNuApartamento() {
         return nuApartamento;
     }
 
-    public void setNuApartamento(Integer nuApartamento) {
+    public void setNuApartamento(int nuApartamento) {
         this.nuApartamento = nuApartamento;
     }
 
     @Basic
     @Column(name = "in_ativo")
-    public Boolean getInAtivo() {
+    public boolean isInAtivo() {
         return inAtivo;
     }
 
-    public void setInAtivo(Boolean inAtivo) {
+    public void setInAtivo(boolean inAtivo) {
         this.inAtivo = inAtivo;
     }
 
@@ -80,10 +80,10 @@ public class UnidadeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UnidadeEntity that = (UnidadeEntity) o;
-        return Objects.equals(idUnidade, that.idUnidade) &&
+        return idUnidade == that.idUnidade &&
+                nuApartamento == that.nuApartamento &&
+                inAtivo == that.inAtivo &&
                 Objects.equals(sgBloco, that.sgBloco) &&
-                Objects.equals(nuApartamento, that.nuApartamento) &&
-                Objects.equals(inAtivo, that.inAtivo) &&
                 Objects.equals(dtAlteracao, that.dtAlteracao) &&
                 Objects.equals(nuTamanho, that.nuTamanho);
     }
