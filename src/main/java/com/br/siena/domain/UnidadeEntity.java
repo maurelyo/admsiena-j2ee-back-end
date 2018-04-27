@@ -10,7 +10,7 @@ import java.util.Objects;
 public class UnidadeEntity {
 
     @Id
-    @Column(name = "id_unidade")
+    @Column(name = "id_unidade", nullable = false)
     @SequenceGenerator(name = "tb_unidade_id_unidade_seq",
             sequenceName = "admin.tb_unidade_id_unidade_seq",
             allocationSize = 1)
@@ -18,23 +18,23 @@ public class UnidadeEntity {
     private int idUnidade;
 
     @Basic
-    @Column(name = "sg_bloco")
+    @Column(name = "sg_bloco", nullable = false)
     private String sgBloco;
 
     @Basic
-    @Column(name = "nu_apartamento")
+    @Column(name = "nu_apartamento", nullable = false)
     private int nuApartamento;
 
     @Basic
-    @Column(name = "in_ativo")
+    @Column(name = "in_ativo", nullable = false)
     private boolean inAtivo;
 
     @Basic
-    @Column(name = "dt_alteracao")
+    @Column(name = "dt_alteracao", nullable = false)
     private Timestamp dtAlteracao;
 
     @Basic
-    @Column(name = "nu_tamanho")
+    @Column(name = "nu_tamanho", nullable = false)
     private BigDecimal nuTamanho;
 
     public int getIdUnidade() {

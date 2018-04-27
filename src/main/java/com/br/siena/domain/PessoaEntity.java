@@ -23,6 +23,14 @@ public class PessoaEntity {
     @Column(name = "no_pessoa", nullable = false)
     private String noPessoa;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "id_unidade", nullable = false)
+    private UnidadeEntity unidade;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "id_tipo_pessoa", nullable = false)
+    private TipoPessoaEntity tipoPessoa;
+
     @CPF
     @Basic
     @Column(name = "nu_cpf")
@@ -100,23 +108,41 @@ public class PessoaEntity {
         this.dtNascimento = dtNascimento;
     }
 
+    public UnidadeEntity getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(UnidadeEntity unidade) {
+        this.unidade = unidade;
+    }
+
+    public TipoPessoaEntity getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(TipoPessoaEntity tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof PessoaEntity)) return false;
         PessoaEntity that = (PessoaEntity) o;
-        return idPessoa == that.idPessoa &&
-                inAtivo == that.inAtivo &&
-                Objects.equals(noPessoa, that.noPessoa) &&
-                Objects.equals(nuCpf, that.nuCpf) &&
-                Objects.equals(nuRg, that.nuRg) &&
-                Objects.equals(dtAlteracao, that.dtAlteracao) &&
-                Objects.equals(dtNascimento, that.dtNascimento);
+        return getIdPessoa() == that.getIdPessoa() &&
+                isInAtivo() == that.isInAtivo() &&
+                Objects.equals(getNoPessoa(), that.getNoPessoa()) &&
+                Objects.equals(getUnidade(), that.getUnidade()) &&
+                Objects.equals(getTipoPessoa(), that.getTipoPessoa()) &&
+                Objects.equals(getNuCpf(), that.getNuCpf()) &&
+                Objects.equals(getNuRg(), that.getNuRg()) &&
+                Objects.equals(getDtAlteracao(), that.getDtAlteracao()) &&
+                Objects.equals(getDtNascimento(), that.getDtNascimento());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idPessoa, noPessoa, nuCpf, nuRg, inAtivo, dtAlteracao, dtNascimento);
+        return Objects.hash(getIdPessoa(), getNoPessoa(), getUnidade(), getTipoPessoa(), getNuCpf(), getNuRg(), isInAtivo(), getDtAlteracao(), getDtNascimento());
     }
 }

@@ -8,7 +8,7 @@ import java.util.Objects;
 public class PerfilEntity {
 
     @Id
-    @Column(name = "id_perfil")
+    @Column(name = "id_perfil", nullable = false)
     @SequenceGenerator(name = "tb_perfil_id_perfil_seq",
             sequenceName = "admin.tb_perfil_id_perfil_seq",
             allocationSize = 1)
@@ -16,11 +16,11 @@ public class PerfilEntity {
     private int idPerfil;
 
     @Basic
-    @Column(name = "no_perfil")
+    @Column(name = "no_perfil", nullable = false)
     private String noPerfil;
 
     @Basic
-    @Column(name = "in_ativo")
+    @Column(name = "in_ativo", nullable = false)
     private boolean inAtivo;
 
     public int getIdPerfil() {

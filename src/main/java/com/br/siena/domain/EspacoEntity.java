@@ -8,7 +8,7 @@ import java.util.Objects;
 public class EspacoEntity {
 
     @Id
-    @Column(name = "id_espaco")
+    @Column(name = "id_espaco", nullable = false)
     @SequenceGenerator(name = "tb_espaco_id_espaco_seq",
             sequenceName = "admin.tb_espaco_id_espaco_seq",
             allocationSize = 1)
@@ -16,15 +16,15 @@ public class EspacoEntity {
     private int idEspaco;
 
     @Basic
-    @Column(name = "no_espaco")
+    @Column(name = "no_espaco", nullable = false)
     private String noEspaco;
 
     @Basic
-    @Column(name = "in_ativo")
+    @Column(name = "in_ativo", nullable = false)
     private boolean inAtivo;
 
     @Basic
-    @Column(name = "nu_valor_aluguel")
+    @Column(name = "nu_valor_aluguel", nullable = false)
     private String nuValorAluguel;
 
     public int getIdEspaco() {
