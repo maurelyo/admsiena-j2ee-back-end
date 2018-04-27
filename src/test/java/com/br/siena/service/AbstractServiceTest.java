@@ -17,7 +17,6 @@ import java.util.List;
 @ContextConfiguration(classes = SienaApplication.class)
 public abstract class AbstractServiceTest {
 
-
     private PerfilService perfilService;
     private UsuarioService usuarioService;
     private UnidadeService unidadeService;
@@ -49,10 +48,6 @@ public abstract class AbstractServiceTest {
     public List<PessoaEntity> listarPessoa()
     {
         return this.getPessoaService().listar();
-    }
-
-    public String getNoLoginTest() {
-        return "teste.unitario";
     }
 
     public String getSenhaBase64Test() {

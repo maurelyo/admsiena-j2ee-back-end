@@ -17,8 +17,7 @@ public class UsuarioServiceTest extends AbstractServiceTest {
 
     @Test
     public void listar() {
-        List<UsuarioEntity> list = null;
-        list = this.getUsuarioService().listar();
+        List<UsuarioEntity> list = this.getUsuarioService().listar();
         assertNotNull(list);
     }
 
@@ -31,7 +30,6 @@ public class UsuarioServiceTest extends AbstractServiceTest {
         PessoaEntity pessoaEntity = pessoaEntityList.get(1);
 
         UsuarioEntity usuarioEntity = this.getUsuarioService().cadastrarUsuario(
-                getNoLoginTest(),
                 perfilEntity.getIdPerfil(),
                 getSenhaBase64Test(),
                 getNoEmailTest(),

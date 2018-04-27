@@ -6,9 +6,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_perfil", schema = "admin", catalog = "siena")
 public class PerfilEntity {
-    private int idPerfil;
-    private String noPerfil;
-    private boolean inAtivo;
 
     @Id
     @Column(name = "id_perfil")
@@ -16,6 +13,16 @@ public class PerfilEntity {
             sequenceName = "admin.tb_perfil_id_perfil_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_perfil_id_perfil_seq")
+    private int idPerfil;
+
+    @Basic
+    @Column(name = "no_perfil")
+    private String noPerfil;
+
+    @Basic
+    @Column(name = "in_ativo")
+    private boolean inAtivo;
+
     public int getIdPerfil() {
         return idPerfil;
     }
@@ -24,8 +31,6 @@ public class PerfilEntity {
         this.idPerfil = idPerfil;
     }
 
-    @Basic
-    @Column(name = "no_perfil")
     public String getNoPerfil() {
         return noPerfil;
     }
@@ -34,8 +39,6 @@ public class PerfilEntity {
         this.noPerfil = noPerfil;
     }
 
-    @Basic
-    @Column(name = "in_ativo")
     public boolean isInAtivo() {
         return inAtivo;
     }

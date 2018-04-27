@@ -26,8 +26,7 @@ public class UsuarioDTO {
         return this.getEntityManager().find(UsuarioEntity.class, idUsuario);
     }
 
-    public UsuarioEntity save(String noLogin,
-                              PerfilEntity perfil,
+    public UsuarioEntity save(PerfilEntity perfil,
                               String noSenha,
                               String noEmail,
                               PessoaEntity pessoa
@@ -39,7 +38,6 @@ public class UsuarioDTO {
 
 
         UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setNoLogin(noLogin);
         usuarioEntity.setDtAlteracao(new PGTimestamp(System.currentTimeMillis()));
         usuarioEntity.setInAtivo(true);
         usuarioEntity.setNoSenha(noSenha);

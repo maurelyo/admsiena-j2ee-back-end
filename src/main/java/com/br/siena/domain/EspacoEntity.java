@@ -6,10 +6,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_espaco", schema = "admin", catalog = "siena")
 public class EspacoEntity {
-    private int idEspaco;
-    private String noEspaco;
-    private boolean inAtivo;
-    private String nuValorAluguel;
 
     @Id
     @Column(name = "id_espaco")
@@ -17,6 +13,20 @@ public class EspacoEntity {
             sequenceName = "admin.tb_espaco_id_espaco_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_espaco_id_espaco_seq")
+    private int idEspaco;
+
+    @Basic
+    @Column(name = "no_espaco")
+    private String noEspaco;
+
+    @Basic
+    @Column(name = "in_ativo")
+    private boolean inAtivo;
+
+    @Basic
+    @Column(name = "nu_valor_aluguel")
+    private String nuValorAluguel;
+
     public int getIdEspaco() {
         return idEspaco;
     }
@@ -25,8 +35,6 @@ public class EspacoEntity {
         this.idEspaco = idEspaco;
     }
 
-    @Basic
-    @Column(name = "no_espaco")
     public String getNoEspaco() {
         return noEspaco;
     }
@@ -35,8 +43,6 @@ public class EspacoEntity {
         this.noEspaco = noEspaco;
     }
 
-    @Basic
-    @Column(name = "in_ativo")
     public boolean isInAtivo() {
         return inAtivo;
     }
@@ -45,8 +51,6 @@ public class EspacoEntity {
         this.inAtivo = inAtivo;
     }
 
-    @Basic
-    @Column(name = "nu_valor_aluguel")
     public String getNuValorAluguel() {
         return nuValorAluguel;
     }

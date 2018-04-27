@@ -8,12 +8,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_unidade", schema = "admin", catalog = "siena")
 public class UnidadeEntity {
-    private int idUnidade;
-    private String sgBloco;
-    private int nuApartamento;
-    private boolean inAtivo;
-    private Timestamp dtAlteracao;
-    private BigDecimal nuTamanho;
 
     @Id
     @Column(name = "id_unidade")
@@ -21,6 +15,28 @@ public class UnidadeEntity {
             sequenceName = "admin.tb_unidade_id_unidade_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_unidade_id_unidade_seq")
+    private int idUnidade;
+
+    @Basic
+    @Column(name = "sg_bloco")
+    private String sgBloco;
+
+    @Basic
+    @Column(name = "nu_apartamento")
+    private int nuApartamento;
+
+    @Basic
+    @Column(name = "in_ativo")
+    private boolean inAtivo;
+
+    @Basic
+    @Column(name = "dt_alteracao")
+    private Timestamp dtAlteracao;
+
+    @Basic
+    @Column(name = "nu_tamanho")
+    private BigDecimal nuTamanho;
+
     public int getIdUnidade() {
         return idUnidade;
     }
@@ -29,8 +45,6 @@ public class UnidadeEntity {
         this.idUnidade = idUnidade;
     }
 
-    @Basic
-    @Column(name = "sg_bloco")
     public String getSgBloco() {
         return sgBloco;
     }
@@ -39,8 +53,6 @@ public class UnidadeEntity {
         this.sgBloco = sgBloco;
     }
 
-    @Basic
-    @Column(name = "nu_apartamento")
     public int getNuApartamento() {
         return nuApartamento;
     }
@@ -49,8 +61,6 @@ public class UnidadeEntity {
         this.nuApartamento = nuApartamento;
     }
 
-    @Basic
-    @Column(name = "in_ativo")
     public boolean isInAtivo() {
         return inAtivo;
     }
@@ -59,8 +69,6 @@ public class UnidadeEntity {
         this.inAtivo = inAtivo;
     }
 
-    @Basic
-    @Column(name = "dt_alteracao")
     public Timestamp getDtAlteracao() {
         return dtAlteracao;
     }
@@ -69,8 +77,6 @@ public class UnidadeEntity {
         this.dtAlteracao = dtAlteracao;
     }
 
-    @Basic
-    @Column(name = "nu_tamanho")
     public BigDecimal getNuTamanho() {
         return nuTamanho;
     }

@@ -17,19 +17,37 @@ import java.util.List;
 @Service
 public class UsuarioService {
 
+    /**
+     * Recupera um cadastro de usuario por id
+     * @param id Identificador do usuario
+     * @return UsurioEntity
+     */
     public UsuarioEntity recuperar(int id) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         return usuarioDTO.find(id);
     }
 
+    /**
+     * Lista os usuarios com cadastro ativo
+     * @return List
+     */
     public List<UsuarioEntity> listar() {
         UsuarioRepository repository = new UsuarioRepository();
         repository.listarAtivos();
         return repository.listarAtivos();
     }
 
-    public UsuarioEntity cadastrarUsuario(String noLogin,
-                                          int idPerfil,
+    /**
+     * Cadastra um novo usuario
+     * @param idPerfil Identificador do perfil de privilegios do usuario
+     * @param noSenhaBase64 Senha codificada em base64
+     * @param noEmail Endereco de email do usuario
+     * @param idPessoa Identificador de referencia para o cadastro de Pessoa
+     * @return UsuarioEntity
+     * @throws UsuarioException
+     * @throws PessoaException
+     */
+    public UsuarioEntity cadastrarUsuario(int idPerfil,
                                           String noSenhaBase64,
                                           String noEmail,
                                           int idPessoa
@@ -51,7 +69,7 @@ public class UsuarioService {
         }
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        return usuarioDTO.save(noLogin, perfil, noSenha, noEmail, pessoa);
+        return usuarioDTO.save(perfil, noSenha, noEmail, pessoa);
     }
 
     /**

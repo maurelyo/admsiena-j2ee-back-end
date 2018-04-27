@@ -7,14 +7,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_usuario", schema = "admin", catalog = "siena")
 public class UsuarioEntity {
-    private int idUsuario;
-    private String noLogin;
-    private Timestamp dtAlteracao;
-    private boolean inAtivo;
-    private PerfilEntity perfil;
-    private String noSenha;
-    private String noEmail;
-    private PessoaEntity pessoa;
 
     @Id
     @Column(name = "id_usuario")
@@ -22,6 +14,32 @@ public class UsuarioEntity {
             sequenceName = "admin.tb_usuario_id_usuario_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_usuario_id_usuario_seq")
+    private int idUsuario;
+
+    @Basic
+    @Column(name = "dt_alteracao", nullable = false)
+    private Timestamp dtAlteracao;
+
+    @Basic
+    @Column(name = "in_ativo", nullable = false)
+    private boolean inAtivo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_perfil", nullable = false)
+    private PerfilEntity perfil;
+
+    @Basic
+    @Column(name = "no_senha", nullable = false)
+    private String noSenha;
+
+    @Basic
+    @Column(name = "no_email", nullable = false)
+    private String noEmail;
+
+    @OneToOne
+    @JoinColumn(name = "id_pessoa", nullable = false)
+    private PessoaEntity pessoa;
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -30,18 +48,6 @@ public class UsuarioEntity {
         this.idUsuario = idUsuario;
     }
 
-    @Basic
-    @Column(name = "no_login")
-    public String getNoLogin() {
-        return noLogin;
-    }
-
-    public void setNoLogin(String noLogin) {
-        this.noLogin = noLogin;
-    }
-
-    @Basic
-    @Column(name = "dt_alteracao")
     public Timestamp getDtAlteracao() {
         return dtAlteracao;
     }
@@ -50,8 +56,6 @@ public class UsuarioEntity {
         this.dtAlteracao = dtAlteracao;
     }
 
-    @Basic
-    @Column(name = "in_ativo")
     public boolean isInAtivo() {
         return inAtivo;
     }
@@ -60,8 +64,7 @@ public class UsuarioEntity {
         this.inAtivo = inAtivo;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_perfil")
+
     public PerfilEntity getPerfil() {
         return perfil;
     }
@@ -70,8 +73,6 @@ public class UsuarioEntity {
         this.perfil = perfil;
     }
 
-    @Basic
-    @Column(name = "no_senha")
     public String getNoSenha() {
         return noSenha;
     }
@@ -80,8 +81,6 @@ public class UsuarioEntity {
         this.noSenha = noSenha;
     }
 
-    @Basic
-    @Column(name = "no_email")
     public String getNoEmail() {
         return noEmail;
     }
@@ -90,8 +89,6 @@ public class UsuarioEntity {
         this.noEmail = noEmail;
     }
 
-    @OneToOne
-    @JoinColumn(name = "id_pessoa")
     public PessoaEntity getPessoa() {
         return pessoa;
     }
@@ -107,7 +104,6 @@ public class UsuarioEntity {
         UsuarioEntity that = (UsuarioEntity) o;
         return getIdUsuario() == that.getIdUsuario() &&
                 isInAtivo() == that.isInAtivo() &&
-                Objects.equals(getNoLogin(), that.getNoLogin()) &&
                 Objects.equals(getDtAlteracao(), that.getDtAlteracao()) &&
                 Objects.equals(getPerfil(), that.getPerfil()) &&
                 Objects.equals(getNoSenha(), that.getNoSenha()) &&
@@ -118,6 +114,6 @@ public class UsuarioEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getIdUsuario(), getNoLogin(), getDtAlteracao(), isInAtivo(), getPerfil(), getNoSenha(), getNoEmail(), getPessoa());
+        return Objects.hash(getIdUsuario(), getDtAlteracao(), isInAtivo(), getPerfil(), getNoSenha(), getNoEmail(), getPessoa());
     }
 }

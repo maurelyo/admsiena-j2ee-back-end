@@ -8,11 +8,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_reserva", schema = "admin", catalog = "siena")
 public class ReservaEntity {
-    private int idReserva;
-    private Timestamp dtAlteracao;
-    private boolean inPago;
-    private boolean inAtivo;
-    private Date dtReserva;
 
     @Id
     @Column(name = "id_reserva")
@@ -20,6 +15,24 @@ public class ReservaEntity {
             sequenceName = "admin.tb_reserva_id_reserva_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_reserva_id_reserva_seq")
+    private int idReserva;
+
+    @Basic
+    @Column(name = "dt_alteracao")
+    private Timestamp dtAlteracao;
+
+    @Basic
+    @Column(name = "in_pago")
+    private boolean inPago;
+
+    @Basic
+    @Column(name = "in_ativo")
+    private boolean inAtivo;
+
+    @Basic
+    @Column(name = "dt_reserva")
+    private Date dtReserva;
+
     public int getIdReserva() {
         return idReserva;
     }
@@ -28,8 +41,6 @@ public class ReservaEntity {
         this.idReserva = idReserva;
     }
 
-    @Basic
-    @Column(name = "dt_alteracao")
     public Timestamp getDtAlteracao() {
         return dtAlteracao;
     }
@@ -38,8 +49,6 @@ public class ReservaEntity {
         this.dtAlteracao = dtAlteracao;
     }
 
-    @Basic
-    @Column(name = "in_pago")
     public boolean isInPago() {
         return inPago;
     }
@@ -48,8 +57,6 @@ public class ReservaEntity {
         this.inPago = inPago;
     }
 
-    @Basic
-    @Column(name = "in_ativo")
     public boolean isInAtivo() {
         return inAtivo;
     }
@@ -58,8 +65,6 @@ public class ReservaEntity {
         this.inAtivo = inAtivo;
     }
 
-    @Basic
-    @Column(name = "dt_reserva")
     public Date getDtReserva() {
         return dtReserva;
     }

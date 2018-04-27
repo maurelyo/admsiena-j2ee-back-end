@@ -1,5 +1,7 @@
 package com.br.siena.domain;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -8,13 +10,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_pessoa", schema = "admin", catalog = "siena")
 public class PessoaEntity {
-    private int idPessoa;
-    private String noPessoa;
-    private String nuCpf;
-    private String nuRg;
-    private boolean inAtivo;
-    private Timestamp dtAlteracao;
-    private Date dtNascimento;
 
     @Id
     @Column(name = "id_pessoa")
@@ -22,6 +17,33 @@ public class PessoaEntity {
             sequenceName = "admin.tb_pessoa_id_pessoa_seq",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_pessoa_id_pessoa_seq")
+    private int idPessoa;
+
+    @Basic
+    @Column(name = "no_pessoa", nullable = false)
+    private String noPessoa;
+
+    @CPF
+    @Basic
+    @Column(name = "nu_cpf")
+    private String nuCpf;
+
+    @Basic
+    @Column(name = "nu_rg")
+    private String nuRg;
+
+    @Basic
+    @Column(name = "in_ativo", nullable = false)
+    private boolean inAtivo;
+
+    @Basic
+    @Column(name = "dt_alteracao", nullable = false)
+    private Timestamp dtAlteracao;
+
+    @Basic
+    @Column(name = "dt_nascimento")
+    private Date dtNascimento;
+
     public int getIdPessoa() {
         return idPessoa;
     }
@@ -30,8 +52,6 @@ public class PessoaEntity {
         this.idPessoa = idPessoa;
     }
 
-    @Basic
-    @Column(name = "no_pessoa")
     public String getNoPessoa() {
         return noPessoa;
     }
@@ -40,8 +60,6 @@ public class PessoaEntity {
         this.noPessoa = noPessoa;
     }
 
-    @Basic
-    @Column(name = "nu_cpf")
     public String getNuCpf() {
         return nuCpf;
     }
@@ -50,8 +68,6 @@ public class PessoaEntity {
         this.nuCpf = nuCpf;
     }
 
-    @Basic
-    @Column(name = "nu_rg")
     public String getNuRg() {
         return nuRg;
     }
@@ -60,8 +76,6 @@ public class PessoaEntity {
         this.nuRg = nuRg;
     }
 
-    @Basic
-    @Column(name = "in_ativo")
     public boolean isInAtivo() {
         return inAtivo;
     }
@@ -70,8 +84,6 @@ public class PessoaEntity {
         this.inAtivo = inAtivo;
     }
 
-    @Basic
-    @Column(name = "dt_alteracao")
     public Timestamp getDtAlteracao() {
         return dtAlteracao;
     }
@@ -80,8 +92,6 @@ public class PessoaEntity {
         this.dtAlteracao = dtAlteracao;
     }
 
-    @Basic
-    @Column(name = "dt_nascimento")
     public Date getDtNascimento() {
         return dtNascimento;
     }

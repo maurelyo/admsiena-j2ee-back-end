@@ -52,7 +52,6 @@ public class Usuario {
     @PostMapping
     @ResponseBody
     public UsuarioEntity cadastrar(
-            @RequestParam("noLogin") String noLogin,
             @RequestParam("idPerfil") int idPerfil,
             @RequestParam("noSenha") String noSenhaBase64,
             @RequestParam("noEmail") String noEmail,
@@ -60,7 +59,7 @@ public class Usuario {
     ) {
         UsuarioEntity usuario;
         try {
-            usuario = service.cadastrarUsuario(noLogin, idPerfil, noSenhaBase64, noEmail, idPessoa);
+            usuario = service.cadastrarUsuario(idPerfil, noSenhaBase64, noEmail, idPessoa);
         } catch (Exception ex) {
             throw new WebApplicationException(ex.getMessage());
         }
