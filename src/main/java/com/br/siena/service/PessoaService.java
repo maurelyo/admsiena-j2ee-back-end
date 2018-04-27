@@ -1,11 +1,15 @@
 package com.br.siena.service;
 
 import com.br.siena.domain.PessoaEntity;
-import com.br.siena.exception.PessoaException;
-import com.br.siena.exception.UsuarioException;
+import com.br.siena.domain.TipoPessoaEntity;
+import com.br.siena.domain.UnidadeEntity;
+import com.br.siena.exception.TipoPessoaException;
+import com.br.siena.exception.UnidadeException;
 import com.br.siena.model.PessoaDTO;
 import com.br.siena.repository.PessoaRepository;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
 
 public class PessoaService {
@@ -33,40 +37,39 @@ public class PessoaService {
 
     /**
      * Cadastra uma nova pessoa
-     * @param noLogin Nome de login para acesso ao sistema
-     * @param idPerfil Identificador do perfil de privilegios do usuario
-     * @param noSenhaBase64 Senha codificada em base64
-     * @param noEmail Endereco de email do usuario
-     * @param idPessoa Identificador de referencia para o cadastro de Pessoa
-     * @return UsuarioEntity
-     * @throws UsuarioException
-     * @throws PessoaException
+     * @param noPessoa Nome completo da pessoa
+     * @param idUnidade Identificador da unidade relacionada
+     * @param idTipoPessoa Identificador do tipo de pessoa
+     * @param nuCpf Numero do CPF da pessoa
+     * @param nuRg Numero do RG da pessoa
+     * @param dtNascimento Data de nascimento da pessoa
+     * @return PessoaEntity
+     * @throws UnidadeException
+     * @throws TipoPessoaException
+     * @throws ParseException
      */
-    public PessoaEntity cadastrarPessoa(String noLogin,
-                                          int idPerfil,
-                                          String noSenhaBase64,
-                                          String noEmail,
-                                          int idPessoa
-    ) throws UsuarioException, PessoaException {
-//        String noSenha = this.converterBase64ParaHash(noSenhaBase64);
-//
-//        // Recupera a entidade Perfil por id
-//        PerfilService perfilService = new PerfilService();
-//        PerfilEntity perfil = perfilService.recuperar(idPerfil);
-//        if (null == perfil) {
-//            throw new UsuarioException("Perfil não encontrado.");
-//        }
-//
-//        // Recupera a entidade Pessoa por id
-//        PessoaService pessoaService = new PessoaService();
-//        PessoaEntity pessoa = pessoaService.recuperar(idPessoa);
-//        if (null == pessoa) {
-//            throw new PessoaException("Cadastro de pessoa não encontrado.");
-//        }
-//
-//        UsuarioDTO usuarioDTO = new UsuarioDTO();
-//        return usuarioDTO.save(noLogin, perfil, noSenha, noEmail, pessoa);
-        PessoaEntity pessoa = new PessoaEntity();
-        return pessoa;
+    public PessoaEntity cadastrarPessoa(String noPessoa,
+                                        int idUnidade,
+                                        int idTipoPessoa,
+                                        String nuCpf,
+                                        String nuRg,
+                                        String dtNascimento
+    ) throws UnidadeException, TipoPessoaException, ParseException {
+        // Recupera a entidade Unidade por id
+        UnidadeService unidadeService = new UnidadeService();
+        UnidadeEntity unidade = unidadeService.recuperar(idUnidade);
+        if (null == unidade) {
+            throw new UnidadeException("Unidade não encontrada.");
+        }
+
+        // Recupera a entidade Tipo Pessoa por id
+        TipoPessoaService tipoPessoaService = new TipoPessoaService();
+        TipoPessoaEntity tipoPessoa = tipoPessoaService.recuperar(idTipoPessoa);
+        if (null == tipoPessoa) {
+            throw new TipoPessoaException("Perfil (tipo) de Pessoa não encontrada.");
+        }
+
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        return pessoaDTO.save(noPessoa, unidade, tipoPessoa, nuCpf, nuRg, Date.valueOf(dtNascimento));
     }
 }

@@ -50,7 +50,6 @@ public class UsuarioDTO {
         transaction.commit();
         session.close();
         return usuarioEntity;
-
     }
 
     private EntityManager getEntityManager() {

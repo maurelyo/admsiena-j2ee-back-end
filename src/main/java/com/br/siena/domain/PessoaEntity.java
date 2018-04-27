@@ -24,11 +24,11 @@ public class PessoaEntity {
     private String noPessoa;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "id_unidade", nullable = false)
+    @JoinColumn(name = "id_unidade", nullable = false)
     private UnidadeEntity unidade;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "id_tipo_pessoa", nullable = false)
+    @JoinColumn(name = "id_tipo_pessoa", nullable = false)
     private TipoPessoaEntity tipoPessoa;
 
     @CPF

@@ -18,11 +18,11 @@ public class ReservaEntity {
     private int idReserva;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "id_espaco", nullable = false)
+    @JoinColumn(name = "id_espaco", nullable = false)
     private EspacoEntity espaco;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private UsuarioEntity usuario;
 
     @Basic
